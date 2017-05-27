@@ -1,7 +1,8 @@
 # Let's build a linear regression using tensorflow
-
+import tensorflow as tf
 from sklearn.datasets import load_boston
 from sklearn.utils import shuffle, resample 
+import numpy as np
 
 data = load_boston() # Load the boston data set
 
@@ -48,7 +49,7 @@ y_pred = tf.add(tf.matmul(layer_1_sigmoid, W_2), bias_2)
 y_pred = tf.reshape(y_pred, shape=(batch_size,)) 
 print (y_pred)
 # Now define the cost function (MSE)
-cost = tf.reduce_sum(tf.square(y_pred-Y))*1./(2*X_.shape[0]) # reduce_sum summs across all the dimensions
+cost = tf.reduce_sum(tf.square(y_pred-Y))*1./(2*batch_size) # reduce_sum summs across all the dimensions
 
 # Now define the optimizer
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
